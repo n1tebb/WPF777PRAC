@@ -85,7 +85,7 @@ namespace seventh_practice {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/seventh_practice;V1.0.0.0;component/addtodo.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/seventh_practice;component/addtodo.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\AddToDo.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

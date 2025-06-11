@@ -85,8 +85,8 @@ namespace seventh_practice
         private void SaveTextFile(object sender, RoutedEventArgs e)
         {
             SaveFileDialog t = new SaveFileDialog();
-            t.Filter = "Normal text file (*.txt)|*.txt";
-            t.DefaultExt = ".txt";
+            t.Filter = "json file (*.json)|*.json";
+            t.DefaultExt = ".json";
             t.Title = "Сохранить задачи в файл";
 
             if (ToDoList.Count == 0)
