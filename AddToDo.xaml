@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:seventh_practice"
         mc:Ignorable="d"
         Title="AddToDo" Height="450" Width="400">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:AddToDo.SaveToDoCommand}"
                         Executed="SaveToDo"/>

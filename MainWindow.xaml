@@ -10,6 +10,9 @@
         Width="400"
         ResizeMode="NoResize"
         Icon="/Assets/icon.png">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
     <Window.Resources>
         <local:DateTimeConvertor x:Key="DateTimeConvertor"/>
     </Window.Resources>
