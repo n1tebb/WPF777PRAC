@@ -4,6 +4,8 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Text.Json;
+using System.Text.Encodings.Web;
 
 namespace seventh_practice
 {
@@ -97,21 +99,22 @@ namespace seventh_practice
 
             if (t.ShowDialog() == true)
             {
-                using (StreamWriter writer = new StreamWriter(t.FileName))
+                try
                 {
-                    foreach (var item in ToDoList)
+                    var options = new JsonSerializerOptions
                     {
-                        if (item.Doing == true)
-                        {
-                            writer.WriteLine($"✔{item.Name}");
-                        }
-                        else
-                        {
-                            writer.WriteLine(item.Name);
-                        }
-                        writer.WriteLine($"\n{item.Date}");
-                        writer.WriteLine($"\n{item.Description}\n\n");
-                    }
+                        WriteIndented = true, // Для красивого форматирования JSON
+                        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping // Для поддержки русских букв
+                    };
+
+                    string json = JsonSerializer.Serialize(ToDoList.ToList(), options); // Сериализуем ObservableCollection в JSON
+                    File.WriteAllText(t.FileName, json); // Записываем в файл
+
+                    MessageBox.Show("Файл успешно сохранён!", "Сохранение", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при сохранении файла: {ex.Message}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
